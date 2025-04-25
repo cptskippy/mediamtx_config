@@ -1,0 +1,20 @@
+services:
+  mediamtx:
+    #image: bluenviron/mediamtx:latest-ffmpeg-rpi
+    image: 00cea27e330f
+    restart: unless-stopped
+    network_mode: host
+    privileged: true
+    environment:
+      - MTX_PATHS_CAM_SOURCE=rpiCamera
+      - TZ=America/Los_Angeles
+    volumes:
+      - "./mediamtx.yml:/mediamtx.yml"
+      - "./server.key:/server.key"
+      - "./server.crt:/server.crt"
+      - "/run/udev:/run/udev:ro"
+      - "/etc/timezone:/etc/timezone:ro"
+      - "/etc/localtime:/etc/localtime:ro"
+    tmpfs:
+      - /dev/shm:exec
+
