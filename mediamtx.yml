@@ -593,7 +593,7 @@ pathDefaults:
   #rpiCameraSharpness: 8
   # Exposure mode.
   # values: normal, short, long, custom.
-  rpiCameraExposure: normal
+  rpiCameraExposure: custom
   # Auto-white-balance mode.
   # (auto, incandescent, tungsten, fluorescent, indoor, daylight, cloudy or custom).
   rpiCameraAWB: auto
@@ -601,7 +601,7 @@ pathDefaults:
   # format: [red,blue].
   #rpiCameraAWBGains: [1.0, 1.0]
   # Denoise operating mode (off, cdn_off, cdn_fast, cdn_hq).
-  rpiCameraDenoise: "cdn_fast"
+  rpiCameraDenoise: "off"
   # Fixed shutter speed, in microseconds.
   rpiCameraShutter: 1000
   # Metering mode of the AEC/AGC algorithm (centre, spot, matrix or custom).
