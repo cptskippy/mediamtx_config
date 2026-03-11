@@ -1,7 +1,6 @@
 services:
   mediamtx:
-    image: bluenviron/mediamtx:latest-ffmpeg-rpi
-    #image: 00cea27e330f
+    image: bluenviron/mediamtx:1.11.3-ffmpeg-rpi
     restart: unless-stopped
     network_mode: host
     privileged: true

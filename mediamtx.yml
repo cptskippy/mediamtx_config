@@ -13,7 +13,7 @@ logDestinations: [stdout]
 # If "file" is in logDestinations, this is the file which will receive the logs.
 logFile: mediamtx.log
 # If "syslog" is in logDestinations, use prefix for logs.
-sysLogPrefix: mediamtx
+#sysLogPrefix: mediamtx
 
 # Timeout of read operations.
 readTimeout: 10s
@@ -21,7 +21,7 @@ readTimeout: 10s
 writeTimeout: 10s
 # Size of the queue of outgoing packets.
 # A higher value allows to increase throughput, a lower value allows to save RAM.
-writeQueueSize: 2048
+writeQueueSize: 4096
 # Maximum size of outgoing UDP packets.
 # This can be decreased to avoid fragmentation on networks with a low UDP MTU.
 udpMaxPayloadSize: 1472
@@ -123,21 +123,21 @@ authHTTPExclude:
 # Users are expected to pass the JWT in the Authorization header, password or query parameter.
 # This is the JWKS URL that will be used to pull (once) the public key that allows
 # to validate JWTs.
-authJWTJWKS:
+#authJWTJWKS:
 # If the JWKS URL has a self-signed or invalid certificate,
 # you can provide the fingerprint of the certificate in order to
 # validate it anyway. It can be obtained by running:
 # openssl s_client -connect jwt_jwks_domain:443 </dev/null 2>/dev/null | sed -n '/BEGIN/,/END/p' > server.crt
 # openssl x509 -in server.crt -noout -fingerprint -sha256 | cut -d "=" -f2 | tr -d ':'
-authJWTJWKSFingerprint:
+#authJWTJWKSFingerprint:
 # name of the claim that contains permissions.
-authJWTClaimKey: mediamtx_permissions
+#authJWTClaimKey: mediamtx_permissions
 # Actions to exclude from JWT-based authentication.
 # Format is the same as the one of user permissions.
-authJWTExclude: []
+#authJWTExclude: []
 # allow passing the JWT through query parameters of HTTP requests (i.e. ?jwt=JWT).
 # This is a security risk.
-authJWTInHTTPQuery: true
+#authJWTInHTTPQuery: true
 
 ###############################################
 # Global settings -> Control API
@@ -262,13 +262,13 @@ multicastRTPPort: 8002
 # Port of all UDP-multicast/RTCP listeners. This is needed only when "multicast" is in rtspTransports.
 multicastRTCPPort: 8003
 # Address of the UDP/SRTP listener. This is needed only when "udp" is in rtspTransports and encryption is enabled.
-srtpAddress: :8004
+#srtpAddress: :8004
 # Address of the UDP/SRTCP listener. This is needed only when "udp" is in rtspTransports and encryption is enabled.
-srtcpAddress: :8005
+#srtcpAddress: :8005
 # Port of all UDP-multicast/SRTP listeners. This is needed only when "multicast" is in rtspTransports and encryption is enabled.
-multicastSRTPPort: 8006
+#multicastSRTPPort: 8006
 # Port of all UDP-multicast/SRTCP listeners. This is needed only when "multicast" is in rtspTransports and encryption is enabled.
-multicastSRTCPPort: 8007
+#multicastSRTCPPort: 8007
 # Path to the server key. This is needed only when encryption is "strict" or "optional".
 # This can be generated with:
 # openssl genrsa -out server.key 2048
@@ -284,7 +284,7 @@ rtspAuthMethods: [basic]
 # Size of the UDP buffer of the RTSP server.
 # This can be increased to mitigate packet losses.
 # It defaults to the default value of the operating system.
-rtspUDPReadBufferSize: 0
+#rtspUDPReadBufferSize: 0
 
 ###############################################
 # Global settings -> RTMP server
@@ -483,7 +483,7 @@ pathDefaults:
   # It can be can be a relative path (i.e. /otherstream) or an absolute RTSP URL.
   fallback:
   # Route original absolute timestamps of RTSP and WebRTC frames, instead of replacing them.
-  useAbsoluteTimestamp: false
+#  useAbsoluteTimestamp: false
 
   ###############################################
   # Default path settings -> Record
@@ -504,7 +504,7 @@ pathDefaults:
   # Therefore, the part duration is equal to the RPO (recovery point objective).
   recordPartDuration: 1s
   # This prevents RAM exhaustion.
-  recordMaxPartSize: 50M
+#  recordMaxPartSize: 50M
   # Minimum duration of each segment.
   recordSegmentDuration: 1h
   # Delete segments after this timespan.
@@ -541,7 +541,7 @@ pathDefaults:
   # Size of the UDP buffer of the RTSP client.
   # This can be increased to mitigate packet losses.
   # It defaults to the default value of the operating system.
-  rtspUDPReadBufferSize: 0
+#  rtspUDPReadBufferSize: 0
 
   ###############################################
   # Default path settings -> MPEG-TS source (when source is MPEG-TS)
@@ -549,17 +549,17 @@ pathDefaults:
   # Size of the UDP buffer of the MPEG-TS client.
   # This can be increased to mitigate packet losses.
   # It defaults to the default value of the operating system.
-  mpegtsUDPReadBufferSize: 0
+#  mpegtsUDPReadBufferSize: 0
 
   ###############################################
   # Default path settings -> RTP source (when source is RTP)
 
   # session description protocol (SDP) of the RTP stream.
-  rtpSDP:
+#  rtpSDP:
   # Size of the UDP buffer of the RTP client.
   # This can be increased to mitigate packet losses.
   # It defaults to the default value of the operating system.
-  rtpUDPReadBufferSize: 0
+#  rtpUDPReadBufferSize: 0
 
   ###############################################
   # Default path settings -> Redirect source (when source is "redirect")
@@ -574,7 +574,7 @@ pathDefaults:
   # ID of the camera.
   rpiCameraCamID: 0
   # Whether this is a secondary stream.
-  rpiCameraSecondary: false
+#  rpiCameraSecondary: false
   # Width of frames.
   rpiCameraWidth: 1456
   # Height of frames.
@@ -593,7 +593,7 @@ pathDefaults:
   #rpiCameraSharpness: 8
   # Exposure mode.
   # values: normal, short, long, custom.
-  rpiCameraExposure: custom
+  rpiCameraExposure: normal
   # Auto-white-balance mode.
   # (auto, incandescent, tungsten, fluorescent, indoor, daylight, cloudy or custom).
   rpiCameraAWB: auto
@@ -601,9 +601,9 @@ pathDefaults:
   # format: [red,blue].
   #rpiCameraAWBGains: [1.0, 1.0]
   # Denoise operating mode (off, cdn_off, cdn_fast, cdn_hq).
-  rpiCameraDenoise: "off"
+  rpiCameraDenoise: "cdn_fast"
   # Fixed shutter speed, in microseconds.
-  rpiCameraShutter: 1000
+  rpiCameraShutter: 500
   # Metering mode of the AEC/AGC algorithm (centre, spot, matrix or custom).
   rpiCameraMetering: matrix
   # Fixed gain.
@@ -651,16 +651,21 @@ pathDefaults:
   rpiCameraIDRPeriod: 60
   # Bitrate (when codec is hardwareH264 or softwareH264).
   rpiCameraBitrate: 50000000
+
+
+  rpiCameraProfile: high
+  rpiCameraLevel: '4.2'
+
   # Hardware H264 profile (baseline, main or high) (when codec is hardwareH264).
-  rpiCameraHardwareH264Profile: high
+#  rpiCameraHardwareH264Profile: high
   # Hardware H264 level (4.0, 4.1 or 4.2) (when codec is hardwareH264).
-  rpiCameraHardwareH264Level: '4.2'
+#  rpiCameraHardwareH264Level: '4.2'
   # Software H264 profile (baseline, main or high) (when codec is softwareH264).
-  rpiCameraSoftwareH264Profile: high
+#  rpiCameraSoftwareH264Profile: high
   # Software H264 level (4.0, 4.1 or 4.2) (when codec is softwareH264).
-  rpiCameraSoftwareH264Level: '4.2'
+#  rpiCameraSoftwareH264Level: '4.2'
   # M-JPEG JPEG quality (when codec is mjpeg).
-  rpiCameraMJPEGQuality: 60
+#  rpiCameraMJPEGQuality: 60
 
   ###############################################
   # Default path settings -> Hooks
