@@ -62,9 +62,9 @@ authMethod: internal
 authInternalUsers:
   # Default unprivileged user.
   # Username. 'any' means any user, including anonymous ones.
-- user: any
+- user: guest
   # Password. Not used in case of 'any' user.
-  pass:
+  pass: guest
   # IPs or networks allowed to use this user. An empty list means any IP.
   ips: []
   # Permissions.
@@ -643,7 +643,7 @@ pathDefaults:
   # bit-depth and packing are optional.
   rpiCameraMode:
   # frames per second.
-  rpiCameraFPS: 60
+  rpiCameraFPS: 30 #60
   # Autofocus mode (auto, manual or continuous).
   rpiCameraAfMode: manual
   # Autofocus range (normal, macro or full).
